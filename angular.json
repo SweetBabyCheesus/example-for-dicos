@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "example-for-dicos:build:production"
+              "buildTarget": "example-for-dicos:build:production"
             },
             "development": {
-              "browserTarget": "example-for-dicos:build:development"
+              "buildTarget": "example-for-dicos:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "example-for-dicos:build"
+            "buildTarget": "example-for-dicos:build"
           }
         },
         "test": {
