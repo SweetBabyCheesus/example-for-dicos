@@ -7,9 +7,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-startseite-component',
-  templateUrl: './startseite.component.html',
-  styleUrls: ['./startseite.component.scss'],
+  selector: 'header-component',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [
     MatToolbarModule,
@@ -19,14 +19,22 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
 })
-export class StartseiteComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   router = inject(Router);
 
   constructor() {}
 
   ngOnInit(): void {}
 
+  routeToStartseite() {
+    this.router.navigateByUrl('');
+  }
+
   routeToTable() {
     this.router.navigateByUrl('tabelle');
+  }
+
+  routeToFormular() {
+    this.router.navigateByUrl('formular');
   }
 }

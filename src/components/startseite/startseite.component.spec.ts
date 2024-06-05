@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StartseiteComponent } from './startseite.component';
 
-describe('FormComponent', () => {
+describe('StartseiteComponent', () => {
   let component: StartseiteComponent;
   let fixture: ComponentFixture<StartseiteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StartseiteComponent ]
-    })
-    .compileComponents();
+      imports: [StartseiteComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StartseiteComponent);
     component = fixture.componentInstance;

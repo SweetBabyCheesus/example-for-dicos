@@ -1,2 +1,129 @@
-<p>form-component works!</p>
-no it doesnt
+<h1>Formular für Bewerber</h1>
+<form [formGroup]="adresse">
+  <fieldset>
+    <legend>
+      <div>Persönliche Daten</div>
+    </legend>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Nachname</mat-label>
+      <input matInput formControlName="nachname" maxlength="85" required />
+      <mat-error><span>Bitte geben Sie einen Nachnamen ein.</span></mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Vorname</mat-label>
+      <input matInput formControlName="vorname" maxlength="85" required />
+      <mat-error><span>Bitte geben Sie einen Vornamen ein.</span></mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Geburtsdatum</mat-label>
+      <input matInput formControlName="geburtsdatum" maxlength="10" required />
+      <mat-error><span>Bitte geben Sie ein Geburtsdatum ein.</span></mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Geburtsort</mat-label>
+      <input matInput formControlName="geburtsort" maxlength="85" required />
+      <mat-error><span>Bitte geben Sie einen Geburtsort ein.</span></mat-error>
+    </mat-form-field>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      <div>Adresse</div>
+    </legend>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Straße</mat-label>
+      <input matInput formControlName="strasse" maxlength="150" required />
+      <mat-error><span>Bitte geben Sie eine Straße ein.</span></mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Hausnr.</mat-label>
+      <input matInput formControlName="hausnummer" maxlength="20" required />
+      <mat-error><span>Bitte geben Sie eine Hausnr. ein.</span></mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>PLZ</mat-label>
+      <input matInput formControlName="plz" maxlength="20" required />
+      <mat-error><span>Bitte geben Sie eine PLZ ein.</span></mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Ort</mat-label>
+      <input matInput formControlName="ort" maxlength="85" required />
+      <mat-error><span>Bitte geben Sie einen Ort ein.</span></mat-error>
+    </mat-form-field>
+  </fieldset>
+</form>
+<div class="upload-fieldset">
+<fieldset class="upload-fieldset">
+  <legend>
+    <div>Laden Sie ihr Anschreiben hoch</div>
+  </legend>
+  <input
+    #upload1
+    type="file"
+    hidden
+    accept=".pdf, .png, .jpg, .jpeg, .msg"
+    (input)="fileChangeEvent($event)"
+  />
+  <div class="drag-drop" my-drag-drop (files)="fileChangeDragDropEvent($event)">
+    <br />
+    <my-drag-drop-image /><br />
+    <span
+      >Datei hierhin ziehen <br />
+      oder </span
+    ><br />
+    <b> {{ dokumente?.controls?.['upload1']?.value }}</b>
+    <div class="btn-container">
+      <button mat-flat-button color="primary" (click)="upload1.click()">
+        <span>Datei auswählen</span>
+      </button>
+      <button mat-flat-button color="primary" (click)="deleteFile()">
+        <span>Datei löschen</span>
+      </button>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="upload-fieldset">
+  <legend>
+    <div>Laden Sie ihren Lebenslauf hoch</div>
+  </legend>
+  <input
+    #upload2
+    type="file"
+    hidden
+    accept=".pdf, .png, .jpg, .jpeg, .msg"
+    (input)="fileChangeEvent($event)"
+  />
+  <div class="drag-drop" my-drag-drop (files)="fileChangeDragDropEvent($event)">
+    <br />
+    <my-drag-drop-image /><br />
+    <span
+      >Datei hierhin ziehen <br />
+      oder </span
+    ><br />
+    <b> {{ dokumente?.controls?.['upload2']?.value }}</b>
+    <div class="btn-container">
+      <button mat-flat-button color="primary" (click)="upload2.click()">
+        <span>Datei auswählen</span>
+      </button>
+      <button mat-flat-button color="primary" (click)="deleteFile()">
+        <span>Datei löschen</span>
+      </button>
+    </div>
+  </div>
+</fieldset>
+</div>
+<div class="btns">
+  <button mat-flat-button color="primary" (click)="send()">Absenden</button>
+  <button id="clearForm" mat-flat-button color="primary" (click)="clearForm()">
+    Zurücksetzen
+  </button>
+</div>

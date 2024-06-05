@@ -1,0 +1,22 @@
+<mat-toolbar class="purple-bg">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="menu">
+    <button class="menu-button" mat-menu-item (click)="routeToStartseite()">
+      Startseite
+    </button>
+    <button class="menu-button" mat-menu-item (click)="routeToTable()">
+      Tabelle
+    </button>
+    <button class="menu-button" mat-menu-item (click)="routeToFormular()">
+      Formular
+    </button>
+  </mat-menu>
+  <span>DICOS Bewerberportal</span>
+</mat-toolbar>

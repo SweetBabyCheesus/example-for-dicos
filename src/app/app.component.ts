@@ -1,16 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'example-for-dicos';
-  router = inject(Router);
-  nadd(){
-    this.router.navigateByUrl('formular');
-  }
-
+  title = 'Example App for DICOS';
 }
