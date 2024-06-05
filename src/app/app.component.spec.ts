@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Example App for DICOS'`, () => {
+  it(`should have as title 'DICOS Bewerbungsportal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Example App for DICOS');
+    expect(app.title).toEqual('DICOS Bewerbungsportal');
   });
 
 });
