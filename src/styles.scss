@@ -1,5 +1,7 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+$my-purple-color: rgb(205, 152, 255);
+
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   -webkit-touch-callout: none;
@@ -19,10 +21,9 @@ body {
 }
 
 .purple-bg {
-    background-color: rgb(205, 152, 255) !important;
+    background-color: $my-purple-color !important;
 }
 
-// fieldset
 fieldset {
   border: 1px solid #757575 !important;
   border-radius: 4px;

@@ -1,5 +1,5 @@
 <h1>Formular für Bewerber</h1>
-<form [formGroup]="adresse">
+<form [formGroup]="adresseFormGroup">
   <fieldset>
     <legend>
       <div>Persönliche Daten</div>
@@ -61,65 +61,91 @@
   </fieldset>
 </form>
 <div class="upload-fieldset">
-<fieldset class="upload-fieldset">
-  <legend>
-    <div>Laden Sie ihr Anschreiben hoch</div>
-  </legend>
-  <input
-    #upload1
-    type="file"
-    hidden
-    accept=".pdf, .png, .jpg, .jpeg, .msg"
-    (input)="fileChangeEvent($event)"
-  />
-  <div class="drag-drop" my-drag-drop (files)="fileChangeDragDropEvent($event)">
-    <br />
-    <my-drag-drop-image /><br />
-    <span
-      >Datei hierhin ziehen <br />
-      oder </span
-    ><br />
-    <b> {{ dokumente?.controls?.['upload1']?.value }}</b>
-    <div class="btn-container">
-      <button mat-flat-button color="primary" (click)="upload1.click()">
-        <span>Datei auswählen</span>
-      </button>
-      <button mat-flat-button color="primary" (click)="deleteFile()">
-        <span>Datei löschen</span>
-      </button>
+  <fieldset class="upload-fieldset">
+    <legend>
+      <div>Laden Sie ihr Anschreiben hoch</div>
+    </legend>
+    <input
+      #upload1
+      type="file"
+      hidden
+      accept=".pdf, .png, .jpg, .jpeg, .msg"
+      (input)="fileChangeEvent($event, 'upload1')"
+    />
+    <div
+      class="drag-drop"
+      my-drag-drop
+      (files)="fileChangeDragDropEvent($event, 'upload1')"
+    >
+      <br />
+      <my-drag-drop-image /><br />
+      <span
+        >Datei hierhin ziehen <br />
+        oder </span
+      ><br />
+      <b> {{ dokumenteFormGroup.controls["upload1"].value }}</b>
+      <div class="btn-container">
+        <button mat-flat-button color="primary" (click)="upload1.click()">
+          <span>Datei auswählen</span>
+        </button>
+        <button mat-flat-button color="primary" (click)="deleteFile('upload1')">
+          <span>Datei löschen</span>
+        </button>
+      </div>
     </div>
-  </div>
-</fieldset>
+  </fieldset>
 
-<fieldset class="upload-fieldset">
-  <legend>
-    <div>Laden Sie ihren Lebenslauf hoch</div>
-  </legend>
-  <input
-    #upload2
-    type="file"
-    hidden
-    accept=".pdf, .png, .jpg, .jpeg, .msg"
-    (input)="fileChangeEvent($event)"
-  />
-  <div class="drag-drop" my-drag-drop (files)="fileChangeDragDropEvent($event)">
-    <br />
-    <my-drag-drop-image /><br />
-    <span
-      >Datei hierhin ziehen <br />
-      oder </span
-    ><br />
-    <b> {{ dokumente?.controls?.['upload2']?.value }}</b>
-    <div class="btn-container">
-      <button mat-flat-button color="primary" (click)="upload2.click()">
-        <span>Datei auswählen</span>
-      </button>
-      <button mat-flat-button color="primary" (click)="deleteFile()">
-        <span>Datei löschen</span>
-      </button>
+  <fieldset class="upload-fieldset">
+    <legend>
+      <div>Laden Sie ihren Lebenslauf hoch</div>
+    </legend>
+    <input
+      #upload2
+      type="file"
+      hidden
+      accept=".pdf, .png, .jpg, .jpeg, .msg"
+      (input)="fileChangeEvent($event, 'upload2')"
+    />
+    <div
+      class="drag-drop"
+      my-drag-drop
+      (files)="fileChangeDragDropEvent($event, 'upload2')"
+    >
+      <br />
+      <my-drag-drop-image /><br />
+      <span
+        >Datei hierhin ziehen <br />
+        oder </span
+      ><br />
+      <b> {{ dokumenteFormGroup.controls["upload2"].value }}</b>
+      <div class="btn-container">
+        <button mat-flat-button color="primary" (click)="upload2.click()">
+          <span>Datei auswählen</span>
+        </button>
+        <button mat-flat-button color="primary" (click)="deleteFile('upload2')">
+          <span>Datei löschen</span>
+        </button>
+      </div>
     </div>
-  </div>
-</fieldset>
+  </fieldset>
+</div>
+<div>
+  <form [formGroup]="nachrichtFormGroup">
+    <fieldset class="nachricht">
+      <legend>
+        <span>Ihre Mitteilung an uns </span>
+      </legend>
+      <mat-form-field>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="5"
+          formControlName="nachricht"
+        ></textarea>
+      </mat-form-field>
+    </fieldset>
+  </form>
 </div>
 <div class="btns">
   <button mat-flat-button color="primary" (click)="send()">Absenden</button>

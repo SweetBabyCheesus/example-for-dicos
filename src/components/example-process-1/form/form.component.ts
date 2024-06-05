@@ -8,7 +8,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Process1Facade } from 'src/libs/facades/process-1.facade';
-import { DragDropDirective, FileHandle } from './../../../libs/directives/drag-and-drop.directive';
+import {
+  DragDropDirective,
+  FileHandle,
+} from './../../../libs/directives/drag-and-drop.directive';
 import { DragAndDropComponent } from '../../../libs/directives/drag-and-drop.component';
 
 @Component({
@@ -39,7 +42,7 @@ export class FormComponent implements OnInit {
   router = inject(Router);
   #process1Facade = inject(Process1Facade);
 
-  adresse = new FormGroup({
+  adresseFormGroup = new FormGroup({
     nachname: new FormControl('', Validators.required),
     vorname: new FormControl('', Validators.required),
     geburtsdatum: new FormControl('', [Validators.required]),
@@ -50,9 +53,13 @@ export class FormComponent implements OnInit {
     ort: new FormControl('', Validators.required),
   });
 
-  dokumente = new FormGroup({
+  dokumenteFormGroup = new FormGroup({
     upload1: new FormControl(''),
-    upload2: new FormControl('')
+    upload2: new FormControl(''),
+  });
+
+  nachrichtFormGroup = new FormGroup({
+    nachricht: new FormControl(''),
   });
 
   constructor() {}
@@ -60,25 +67,27 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   clearForm() {
-    this.adresse.reset();
+    this.adresseFormGroup.reset();
+    this.dokumenteFormGroup.reset();
+    this.nachrichtFormGroup.reset();
   }
 
   send() {
     this.#process1Facade.sendFormData();
   }
 
-  fileChangeEvent(event: Event): void {
+  fileChangeEvent(event: Event, field: string): void {
     const target = event.target as HTMLInputElement;
     let name: string = (target.files as FileList)[0].name;
-    this.dokumente.get('upload1')?.patchValue(name);
+    this.dokumenteFormGroup.get(field)?.patchValue(name);
   }
 
-  fileChangeDragDropEvent(event: FileHandle[]): void {
-    const name = event[0].file.name
-    this.dokumente.get('upload1')?.patchValue(name);
+  fileChangeDragDropEvent(event: FileHandle[], field: string): void {
+    const name = event[0].file.name;
+    this.dokumenteFormGroup.get(field)?.patchValue(name);
   }
 
-  deleteFile() {
-    this.dokumente.get('upload1')?.patchValue('');
+  deleteFile(field: string) {
+    this.dokumenteFormGroup.get(field)?.patchValue('');
   }
 }
